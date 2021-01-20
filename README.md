@@ -36,3 +36,21 @@ Place `shafe` somewhere in your `PATH`.
 ### Requirements
 
 - `openssl enc` command
+
+## Usage
+
+    $ shafe -h
+    Usage: ... | shafe [-h]
+
+    Options
+        -h shows this help screen and exits
+
+    Description
+        Encrypts STDIN content with password prompted and prints to STDOUT decoding command which also prompts password (should be same for proper decryption!).
+
+    Examples:
+        $ # encrypt/decrypt secret.txt in same pipe ...
+        $ cat secret.txt | shafe | sh
+
+        $ # encrypt secret.txt as encrypted.txt then source it for decryption ...
+        $ cat secret.txt | shafe > encrypted.txt && source encrypted.txt
