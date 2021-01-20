@@ -31,7 +31,9 @@ Tada! A self-decrypting command is printed, which when sourced by collegue promp
 
 ## Installation
 
-Place `shafe` somewhere in your `PATH`.
+Place `shafe` somewhere in your `PATH`. Installation as `/usr/local/bin/shafe` can be managed with:
+- `sudo make install`
+- `sudo make uninstall`
 
 ### Requirements
 
