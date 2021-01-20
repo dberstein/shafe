@@ -1,0 +1,30 @@
+#!/bin/sh
+
+OPENSSL="$(which openssl)"
+__BASE_OPENSSL_CMD="${OPENSSL} enc -aes256 -pbkdf2 -base64 -a"
+
+
+# ${__BASE_OPENSSL_CMD} -e | ${__BASE_OPENSSL_CMD} -d
+
+usage() {
+    echo "Usage: cat input | $(basename "$0") -e|-d|-h"
+    echo -e "-e\tEncode"
+    echo -e "-d\tDecode"
+    echo -e "-h\tHelp"
+}
+
+while getopts edh o; do
+    case "$o" in
+    e) ${__BASE_OPENSSL_CMD} -e;;
+    d) ${__BASE_OPENSSL_CMD} -d;;
+    h) usage && exit 0;;
+    *) usage && exit 1;;
+    esac
+done
+# endecode() {
+    # "${OPENSSL}" enc -aes256 -pbkdf2 -base64 -a -e | \
+# }
+
+# decode() {
+
+# }
