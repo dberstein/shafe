@@ -23,5 +23,6 @@ while getopts h O; do
 done
 
 # encodes STDIN, prompts for password, outputs decode command that prompts for password ...
+[ -t 0 ] && echo "ERROR: empty STDIN" && usage && exit 2
 OPENSSL_CMD="openssl enc -aes256 -pbkdf2 -a -A"; EOS="$(date -u +"---EOS.$$.%s---")"
 ${OPENSSL_CMD} | sed "1 i\\#!/bin/sh\ncat <<'${EOS}' | ${OPENSSL_CMD} -d" | sed "\$a${EOS}"
