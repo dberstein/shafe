@@ -2,7 +2,14 @@ SHAFE=shafe
 INSTALL_DIR=/usr/local/bin
 INSTALL_SHAFE=$(INSTALL_DIR)/$(SHAFE)
 
-test:
+.PHONY: test
+test: test/podman
+.PHONY: test/podman
+test/podman:
+	@podman run --security-opt label=disable --rm -v "$$PWD:/mnt" koalaman/shellcheck:stable $(SHAFE) \
+	&& echo "All good!"
+.PHONY: test/docker
+test/docker:
 	@docker run --rm -v "$$PWD:/mnt" koalaman/shellcheck:stable $(SHAFE) \
 	&& echo "All good!"
 
